@@ -1,5 +1,6 @@
 package com.ll.medium.domain.member.member.controller;
 
+import com.ll.medium.domain.member.member.service.MemberService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 @RequestMapping("/member")
 public class MemberController {
+    private final MemberService memberService;
 
     @Getter
     @RequiredArgsConstructor
@@ -27,7 +29,6 @@ public class MemberController {
 
     @PostMapping("/join")
     public String doJoin(JoinForm joinForm) {
-        return null;
+        return memberService.join(joinForm);
     }
-
 }
