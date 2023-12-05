@@ -1,5 +1,8 @@
 <html layout:decorate="~{global/layout}">
-<div layout:ragment="content">
-
+<div layout:fragment="content">
+    <div class="my-3 border-bottom">
+        <h4>회원가입</h4>
+    </div>
+    <form th:action="@{/member/join}" th:object="${JoinForm}" method="post"></form>
 </div>
 </html>
