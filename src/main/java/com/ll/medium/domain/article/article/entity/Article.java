@@ -16,7 +16,7 @@ import static lombok.AccessLevel.PROTECTED;
 @NoArgsConstructor(access = PROTECTED)
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 public class Article extends BaseEntity {
     @ManyToOne(fetch = LAZY)
     private Member author;

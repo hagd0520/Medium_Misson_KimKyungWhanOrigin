@@ -1,14 +1,14 @@
 package com.ll.medium.global.rsData;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Getter
 public class RsData<T> {
     private final String resultCode;
     private final String msg;
-    private final T data;
+    private T data;
     private final int statusCode;
 
     public static <T> RsData<T> of(String resultCode, String resultMessage, T data) {
