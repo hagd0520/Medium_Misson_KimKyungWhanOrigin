@@ -29,9 +29,16 @@ public class MemberController {
     @PostMapping("/join")
     public String join(@Valid MemberJoinForm memberJoinForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return rq.historyBack();
+            return "/join";
         }
-        RsData<Member> joinRs = memberService.join(joinForm.getUsername(), joinForm.getPassword());
+
+        if (!memberJoinForm.getPassword().equals(memberJoinForm.getPasswordConfirm())) {
+            return rq.historyBack("비밀번호가 일치하지 않습니다.");
+        }
+
+        memberService.findByUsername(memberJoinForm.getUsername());
+
+        RsData<Member> joinRs = memberService.join(memberJoinForm.getUsername(), memberJoinForm.getPassword());
         return rq.redirect("/member/login", joinRs);
     }
 

@@ -23,4 +23,11 @@ public class Rq {
     private String redirect(String path, String msg) {
             return "redirect:" + path;
     }
+
+    public String historyBack(String msg) {
+        resp.setStatus(400);
+        req.setAttribute("msg", msg);
+
+        return "global/js";
+    }
 }

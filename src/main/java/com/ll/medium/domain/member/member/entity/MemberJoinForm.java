@@ -13,8 +13,8 @@ public class MemberJoinForm {
     private String username;
 
     @NotEmpty(message = "비밀번호는 필수항목입니다.")
-    private String password1;
+    private String password;
 
     @NotEmpty(message = "비밀번호 확인은 필수항목입니다.")
-    private String password2;
+    private String passwordConfirm;
 }
