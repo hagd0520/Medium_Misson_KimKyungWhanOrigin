@@ -29,6 +29,7 @@ public class MemberController {
 
     @PostMapping("/join")
     public String doJoin(JoinForm joinForm) {
-        return memberService.join(joinForm);
+        memberService.join(joinForm.getUsername(), joinForm.getPassword());
+        return null;
     }
 }
