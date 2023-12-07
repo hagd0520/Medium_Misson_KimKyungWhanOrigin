@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 
 import java.util.Optional;
 
@@ -19,7 +20,10 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
     private final Rq rq;
 
-    public RsData<Member> join(String username, String password, String passwordConfirm) {
+    public RsData<Member> join(String username,
+                               String password,
+                               String passwordConfirm
+    ) {
         if (!password.equals(passwordConfirm)) {
             return RsData.of("400", "비밀번호가 일치하지 않습니다.", null);
         }
@@ -35,6 +39,22 @@ public class MemberService {
         return RsData.of("200",
                 "성공",
                 memberRepository.save(member));
+    }
+
+    public RsData<Member> join(String username,
+                               String password,
+                               String passwordConfirm,
+                               BindingResult bindingResult
+    ) {
+        if (bindingResult.hasErrors()) {
+            return RsData.of(
+                    "400",
+                    bindingResult.getFieldError().getDefaultMessage(),
+                    null
+            );
+        }
+
+        return join(username, password, passwordConfirm);
     }
 
     public Optional<Member> findByUsername(String username) {
