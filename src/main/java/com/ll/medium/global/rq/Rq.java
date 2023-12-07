@@ -3,14 +3,12 @@ package com.ll.medium.global.rq;
 import com.ll.medium.global.rsData.RsData;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
 @RequestScope
 @Component
-@Getter
 @RequiredArgsConstructor
 public class Rq {
     private final HttpServletRequest req;
