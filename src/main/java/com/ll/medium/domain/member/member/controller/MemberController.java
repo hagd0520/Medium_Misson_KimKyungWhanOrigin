@@ -9,7 +9,6 @@ import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,19 +26,16 @@ public class MemberController {
     }
 
     @PostMapping("/join")
-    public String join(@Valid MemberJoinForm memberJoinForm, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "/join";
-        }
+    public String join(@Valid MemberJoinForm memberJoinForm) {
+        // TODO 중복 아이디 방지 로직을 join 메소드로 옮기기 ( sb-2023-11-14 참고)
+        // TODO toastr 적용 방법 찾기
 
-        if (!memberJoinForm.getPassword().equals(memberJoinForm.getPasswordConfirm())) {
-            return rq.historyBack("비밀번호가 일치하지 않습니다.");
-        }
-
-        memberService.findByUsername(memberJoinForm.getUsername());
-
-        RsData<Member> joinRs = memberService.join(memberJoinForm.getUsername(), memberJoinForm.getPassword());
-        return rq.redirect("/member/login", joinRs);
+        RsData<Member> joinRs = memberService.join(
+                memberJoinForm.getUsername(),
+                memberJoinForm.getPassword(),
+                memberJoinForm.getPasswordConfirm()
+        );
+        return rq.redirectOrBack("/member/login", joinRs);
     }
 
     @GetMapping("/login")

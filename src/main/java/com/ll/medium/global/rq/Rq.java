@@ -21,7 +21,7 @@ public class Rq {
     }
 
     private String redirect(String path, String msg) {
-            return "redirect:" + path;
+        return "redirect:" + path;
     }
 
     public String historyBack(String msg) {
@@ -29,5 +29,14 @@ public class Rq {
         req.setAttribute("msg", msg);
 
         return "global/js";
+    }
+
+    public String historyBack(RsData<?> rs) {
+        return historyBack(rs.getMsg());
+    }
+
+    public String redirectOrBack(String url, RsData<?> rs) {
+        if (rs.isFail()) return historyBack(rs);
+        return redirect(url, rs);
     }
 }

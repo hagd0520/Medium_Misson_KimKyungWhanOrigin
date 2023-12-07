@@ -17,6 +17,10 @@ public class RsData<T> {
         return new RsData<>(resultCode, resultMessage, data, statusCode);
     }
 
+    public static RsData<?> of(String resultCode, String resultMessage) {
+        return of(resultCode, resultMessage, null);
+    }
+
     public boolean isSuccess() {
         return statusCode >= 200 && statusCode < 400;
     }
