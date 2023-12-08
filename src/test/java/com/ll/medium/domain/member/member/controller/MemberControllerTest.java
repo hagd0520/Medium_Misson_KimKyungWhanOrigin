@@ -84,4 +84,40 @@ public class MemberControllerTest {
         assertThat(member.getUsername()).isEqualTo("newuser");
         assertThat(passwordEncoder.matches("1234", member.getPassword())).isTrue();
     }
+
+    @Test
+    @DisplayName("아이디 중복 처리")
+    void t3() throws Exception {
+        // WHEN
+        ResultActions resultActions1 = mvc
+                .perform(
+                        post("/member/join")
+                                .with(csrf())
+                                .param("username", "overlappingTestUser")
+                                .param("password", "1234")
+                                .param("passwordConfirm", "1234")
+                )
+                .andDo(print());
+
+        ResultActions resultActions2 = mvc
+                .perform(
+                        post("/member/join")
+                                .with(csrf())
+                                .param("username", "overlappingTestUser")
+                                .param("password", "1234")
+                                .param("passwordConfirm", "1234")
+                )
+                .andDo(print());
+
+        // THEN
+        resultActions1
+                .andExpect(status().is3xxRedirection())
+                .andExpect(handler().handlerType(MemberController.class))
+                .andExpect(handler().methodName("join"));
+
+        resultActions2
+                .andExpect(status().is4xxClientError())
+                .andExpect(handler().handlerType(MemberController.class))
+                .andExpect(handler().methodName("join"));
+    }
 }
