@@ -23,7 +23,7 @@ public class MemberController {
 
     @GetMapping("/join")
     public String showJoin() {
-        return "domain/member/member/join";
+        return "member/member/join";
     }
 
     @PostMapping("/join")
@@ -40,7 +40,7 @@ public class MemberController {
 
     @GetMapping("/login")
     public String showLogin() {
-        return "domain/member/member/login";
+        return "member/member/login";
     }
 
     @Getter

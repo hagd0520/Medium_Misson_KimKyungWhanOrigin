@@ -52,7 +52,15 @@
 <!-- 수정된 코드 -->
 <nav th:replace="~{navbar :: navbarFragment}"></nav>
 ```
-- 
+- TDD 환경을 만들어보려고 했으나 오류가 생겼다. 에러 메시지를 따라가보니 AppConfig 클래스의 다음 코드에서 문제가 발생하고 있었다
+```java
+@Value("${custom.site.baseUrl}")
+public void setSiteBaseUrl(String siteBaseUrl) {
+AppConfig.siteBaseUrl = siteBaseUrl;
+}
+```
+- test.yml에 포트 설정이 안되어 있어 컴파일에러가 발생한 것이었다.
+  - test.yml에도 포트 설정을 함으로서 문제를 해결했다.
 
 ---
 **[수정사항]**
