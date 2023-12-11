@@ -18,8 +18,10 @@ public class Rq {
         return redirect(path, rs.getMsg());
     }
 
-    private String redirect(String path, String msg) {
-        return "redirect:" + path;
+    public String redirect(String path, String msg) {
+        if (msg == null) return "redirect:" + path;
+
+        return "redirect:" + path + "?msg=" + msg;
     }
 
     public String historyBack(String msg) {
