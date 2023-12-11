@@ -2,11 +2,11 @@ package com.ll.medium.domain.member.member.controller;
 
 import com.ll.medium.domain.member.member.entity.Member;
 import com.ll.medium.domain.member.member.entity.MemberJoinForm;
+import com.ll.medium.domain.member.member.entity.MemberLoginForm;
 import com.ll.medium.domain.member.member.service.MemberService;
 import com.ll.medium.global.rq.Rq;
 import com.ll.medium.global.rsData.RsData;
 import jakarta.validation.Valid;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -27,12 +27,12 @@ public class MemberController {
     }
 
     @PostMapping("/join")
-    public String join(@Valid MemberJoinForm memberJoinForm, BindingResult bindingResult) {
+    public String join(@Valid MemberJoinForm joinForm, BindingResult bindingResult) {
 
         RsData<Member> joinRs = memberService.join(
-                memberJoinForm.getUsername(),
-                memberJoinForm.getPassword(),
-                memberJoinForm.getPasswordConfirm(),
+                joinForm.getUsername(),
+                joinForm.getPassword(),
+                joinForm.getPasswordConfirm(),
                 bindingResult
         );
         return rq.redirectOrBack("/member/login", joinRs);
@@ -43,15 +43,10 @@ public class MemberController {
         return "member/member/login";
     }
 
-    @Getter
-    @RequiredArgsConstructor
-    public static class LoginForm {
-        private final String username;
-        private final String password;
-    }
-
     @PostMapping("/login")
-    public String login(LoginForm loginForm) {
-        return null;
+    public String login(MemberLoginForm loginForm) {
+        RsData<Member> loginRs = null;
+
+        return rq.redirectOrBack("/article/list", loginRs);
     }
 }

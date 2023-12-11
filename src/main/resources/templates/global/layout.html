@@ -14,6 +14,7 @@
     <link href="https://jhs512.github.io/toastr/toastr.css" rel="stylesheet">
 
     <script src="/resource/global.js"></script>
+    <th:block layout:fragment="header"></th:block>
 
 </head>
 <body>
@@ -24,8 +25,6 @@
 
 <!-- navbar -->
 <nav th:replace="~{global/navbar :: navbarFragment}"></nav>
-
-<th:block layout:fragment="header"></th:block>
 
 <script>
     const queryParams = getQueryParams();
