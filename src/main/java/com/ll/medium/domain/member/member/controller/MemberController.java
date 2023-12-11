@@ -2,7 +2,6 @@ package com.ll.medium.domain.member.member.controller;
 
 import com.ll.medium.domain.member.member.entity.Member;
 import com.ll.medium.domain.member.member.entity.MemberJoinForm;
-import com.ll.medium.domain.member.member.entity.MemberLoginForm;
 import com.ll.medium.domain.member.member.service.MemberService;
 import com.ll.medium.global.rq.Rq;
 import com.ll.medium.global.rsData.RsData;
@@ -40,13 +39,7 @@ public class MemberController {
 
     @GetMapping("/login")
     public String showLogin() {
+
         return "member/member/login";
-    }
-
-    @PostMapping("/login")
-    public String login(MemberLoginForm loginForm) {
-        RsData<Member> loginRs = null;
-
-        return rq.redirectOrBack("/article/list", loginRs);
     }
 }

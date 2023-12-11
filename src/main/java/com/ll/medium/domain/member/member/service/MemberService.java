@@ -37,7 +37,7 @@ public class MemberService {
                 .build();
 
         return RsData.of("200",
-                "성공",
+                "",
                 memberRepository.save(member));
     }
 
