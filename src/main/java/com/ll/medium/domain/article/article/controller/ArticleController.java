@@ -16,4 +16,6 @@ public class ArticleController {
     public String showList() {
         return "article/article/list";
     }
+
+
 }
