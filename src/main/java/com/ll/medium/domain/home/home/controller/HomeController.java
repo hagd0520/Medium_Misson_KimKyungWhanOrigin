@@ -12,6 +12,11 @@ public class HomeController {
 
     @GetMapping("/")
     public String showMain(String msg) {
-        return rq.redirect("/article/list", msg);
+        return rq.redirect("/home", msg);
+    }
+
+    @GetMapping("/home")
+    public String showMain() {
+        return "home/home/main";
     }
 }
