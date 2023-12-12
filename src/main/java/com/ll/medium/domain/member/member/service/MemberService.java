@@ -37,7 +37,7 @@ public class MemberService {
                 .build();
 
         return RsData.of("200",
-                "",
+                "회원가입이 완료되었습니다.",
                 memberRepository.save(member));
     }
 
