@@ -15,7 +15,7 @@
             </tr>
         </thread>
         <tbody>
-        <tr class="text-center" th:each="article : ${paging}">
+        <tr class="text-center" th:each="article, loop : ${paging}">
             <td th:text="${paging.totalElements - (paging.number * paging.size) - loop.index}"></td>
             <td class="text-start">
                 <a th:href="@{|/|}" th:text="${article.title}"></a>
@@ -25,6 +25,26 @@
         </tr>
         </tbody>
     </table>
+
+    <div class="join" th:if="${!paging.isEmpty()}" th:with="page = ${items}"
+         style="display:flex;
+         justify-content: center; margin: 20px;">
+        <a class="join-item btn" th:classappend="${!paging.hasPrevious} ? 'btn-disabled'"
+           th:href="@{|?page=${paging.number - 1}|}">
+            <span>이전</span>
+        </a>
+        <a th:each="page: ${#numbers.sequence(0, paging.totalPages - 1)}"
+           th:if="${paging.number >= page - 5 and paging.number <= page + 5}"
+           th:classappend="${page == paging.number} ? 'btn-active'"
+           class="join-item btn"
+           th:text="${page + 1}"
+           th:href="@{|?page=${page}|}">
+        </a>
+        <a class="join-item btn" th:classappend="${!paging.hasNext()} ? 'btn-disabled'"
+           th:href="@{|?page=${paging.number + 1}|}">
+            <span>다음</span>
+        </a>
+    </div>
 
 </div>
 

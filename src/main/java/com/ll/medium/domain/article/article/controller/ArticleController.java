@@ -25,7 +25,7 @@ public class ArticleController {
     private final Rq rq;
 
     @GetMapping("/list")
-    public String showList(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
+    public String showList(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
         Page<Article> paging = articleService.getList(page);
         model.addAttribute("paging", paging);
         return "article/article/list";

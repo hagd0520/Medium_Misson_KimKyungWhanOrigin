@@ -65,6 +65,8 @@ AppConfig.siteBaseUrl = siteBaseUrl;
 - 아이디 중복 확인 로직을 위한 MemberControllerTest의 t3메소드를 구현하는 중 스크립트 내의 메시지 내용을 비교해보려고 했으나 스크립트 내의 메시지는 유니코드로 변환되어 있어 실패했다.
 - 모든 회원에게 ROLE_USER 권한을 부여하고 admin에게만 ROLE_ADMIN 권한을 추가로 부여했다. 
 - login 할때도 BindingResult 를 활용하여 경고 메시지를 toastr을 통해 송출해보려했으나 PostMapping 메서드 없이 진행되었기 때문에 html 내 경고문으로 대체했다.
+- Bootstrap을 기반으로 만들어진 paging 코드를 Daisyui에 적용하려고 했지만 형식이 달라 헤매었다
+  - 공식에 나와있는 button 엘리멘털이 아닌 a 엘리멘털을 사용함으로써 해결
 
 ---
 **[수정사항]**

@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,9 @@ import java.util.List;
 public class ArticleService {
     private final ArticleRepository articleRepository;
 
-    public Page<Article> getList(int page) {
+    public Page<Article> getList(
+            @RequestParam(defaultValue = "1") int page
+    ) {
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
