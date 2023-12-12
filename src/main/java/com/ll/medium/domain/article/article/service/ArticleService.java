@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -62,5 +63,9 @@ public class ArticleService {
             );
         }
         return write(title, body, author);
+    }
+
+    public Optional<Article> findLatest() {
+        return articleRepository.findFirstByOrderByIdDesc();
     }
 }
