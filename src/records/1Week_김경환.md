@@ -39,6 +39,7 @@
 
 - 회원가입 기능에 toastr을 사용했습니다.
 - BindingResult 객체를 사용하여 validation을 통해 유효성 검증을 수행하고 유효하지 않을 시 .getFieldError.getDefaultMessage 메소드를 통해 문자열 값을 얻어 toastr로 송출하도록 했습니다.
+  - BindingResult를 적용시키기 위해 Article에도 RsData를 적용했습니다.
 - js가 꺼져 있어도 검증이 작동하고 켜져 있을 경우엔 쿼리가 날아가는 것을 최대한 줄이기 위해 아이디 중복 검사 로직을 제외한 모든 로직들을 js와 자바소스코드에 각각 작성했습니다.
 - navbar 는 추후의 유지보수를 위해 객체화했다.
 - MemberJoinForm과 ArticleWriteForm을 클래스로 두어 가독성을 높이고 유지보수에 편의를 주었다.
