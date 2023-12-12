@@ -25,7 +25,7 @@ public class ArticleController {
     }
 
     @PreAuthorize("isAuthenticated()")
-    @GetMapping("/article/write")
+    @GetMapping("/write")
     public String showWrite() {
         return "article/article/write";
     }

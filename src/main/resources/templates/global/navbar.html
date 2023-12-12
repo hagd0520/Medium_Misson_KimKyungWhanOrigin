@@ -10,6 +10,7 @@
             <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
                     <a th:href="@{/home}">홈</a>
+                    <a th:href="@{/article/write}">글쓰기</a>
                     <a th:href="@{/article/list}">게시글 목록</a>
                     <a sec:authorize="isAnonymous()" th:href="@{/member/login}">로그인</a>
                     <a sec:authorize="isAuthenticated()" th:href="@{/member/logout}">로그아웃</a>
