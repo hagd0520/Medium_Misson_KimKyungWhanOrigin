@@ -30,8 +30,7 @@ public class ArticleService {
     public RsData<Article> write(
             String title,
             String body,
-            Member author,
-            BindingResult bindingResult
+            Member author
     ) {
         Article article = Article.builder()
                 .author(author)
@@ -42,9 +41,23 @@ public class ArticleService {
         articleRepository.save(article);
 
         return RsData.of("200",
-                "성공",
+                "글이 작성되었습니다.",
                 articleRepository.save(article));
     }
 
-
+    public RsData<Article> write(
+            String title,
+            String body,
+            Member author,
+            BindingResult bindingResult
+    ) {
+        if (bindingResult.hasErrors()) {
+            return RsData.of(
+                    "400",
+                    bindingResult.getFieldError().getDefaultMessage(),
+                    null
+            );
+        }
+        return write(title, body, author);
+    }
 }
