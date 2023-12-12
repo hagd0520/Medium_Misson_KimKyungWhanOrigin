@@ -26,25 +26,9 @@
         </tbody>
     </table>
 
-    <div class="join" th:if="${!paging.isEmpty()}" th:with="page = ${items}"
-         style="display:flex;
-         justify-content: center; margin: 20px;">
-        <a class="join-item btn" th:classappend="${!paging.hasPrevious} ? 'btn-disabled'"
-           th:href="@{|?page=${paging.number - 1}|}">
-            <span>이전</span>
-        </a>
-        <a th:each="page: ${#numbers.sequence(0, paging.totalPages - 1)}"
-           th:if="${paging.number >= page - 5 and paging.number <= page + 5}"
-           th:classappend="${page == paging.number} ? 'btn-active'"
-           class="join-item btn"
-           th:text="${page + 1}"
-           th:href="@{|?page=${page}|}">
-        </a>
-        <a class="join-item btn" th:classappend="${!paging.hasNext()} ? 'btn-disabled'"
-           th:href="@{|?page=${paging.number + 1}|}">
-            <span>다음</span>
-        </a>
-    </div>
+    <th:block th:with="paging = ${paging}">
+        <th:block th:replace="global/pagination :: pagination(${paging})"></th:block>
+    </th:block>
 
 </div>
 
