@@ -32,6 +32,14 @@ public class ArticleController {
     }
 
     @PreAuthorize("isAuthenticated()")
+    @GetMapping("/myList")
+    public String showMyList(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
+        Page<Article> paging = articleService.getMyList(page);
+        model.addAttribute("paging", paging);
+        return "article/article/myList";
+    }
+
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/write")
     public String showWrite() {
         return "article/article/write";

@@ -22,4 +22,5 @@ public class Article extends BaseEntity {
     private Member author;
     private String title;
     private String body;
+    // TODO isPublished 관련 기능 구현하기
 }
