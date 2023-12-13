@@ -82,4 +82,8 @@ public class ArticleService {
     public Optional<Article> findLatest() {
         return articleRepository.findFirstByOrderByIdDesc();
     }
+
+    public Optional<Article> findById(long id) {
+        return articleRepository.findById(id);
+    }
 }

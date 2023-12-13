@@ -5,7 +5,11 @@
 </head>
 
 <div layout:fragment="content" class="container mx-auto my-3">
+
+    <div class="font-bold text-2xl">게시글 목록</div>
+
     <th:block th:with="paging = ${paging}">
+
         <th:block th:replace="global/articleTable :: articleTable(${paging})"></th:block>
     </th:block>
 
