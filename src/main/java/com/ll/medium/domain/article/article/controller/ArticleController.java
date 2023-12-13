@@ -48,7 +48,7 @@ public class ArticleController {
         RsData<Article> writeRs = articleService.write(
                 writeForm.getTitle(),
                 writeForm.getBody(),
-                writeForm.getMember(),
+                rq.getMember(),
                 bindingResult
         );
         return rq.redirectOrBack("/", writeRs);
@@ -63,8 +63,6 @@ public class ArticleController {
         return "article/article/detail";
     }
 
-//    @PreAuthorize("isAuthenticated()")
-//    @DeleteMapping("/delete/{id}")
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable long id) {
         Article article = articleService.findById(id).get();
