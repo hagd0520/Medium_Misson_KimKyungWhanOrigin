@@ -5,8 +5,13 @@
 </head>
 
 <div layout:fragment="content" class="container mx-auto my-3">
-    table
+    <th:block th:with="paging = ${paging}">
+        <th:block th:replace="global/articleTable :: articleTable(${paging})"></th:block>
+    </th:block>
 
+    <th:block th:with="paging = ${paging}">
+        <th:block th:replace="global/pagination :: pagination(${paging})"></th:block>
+    </th:block>
 
     <div style="display:flex; "></div>
 
