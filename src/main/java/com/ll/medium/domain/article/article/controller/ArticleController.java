@@ -62,4 +62,18 @@ public class ArticleController {
 
         return "article/article/detail";
     }
+
+//    @PreAuthorize("isAuthenticated()")
+//    @DeleteMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable long id) {
+        Article article = articleService.findById(id).get();
+
+        if (!articleService.canDelete(rq.getMember(), article)) throw new RuntimeException("삭제 권한이 없습니다.");
+
+        articleService.delete(article);
+
+        return rq.redirect("/", "%d번 게시물이 삭제되었습니다.".formatted(id));
+    }
+
 }

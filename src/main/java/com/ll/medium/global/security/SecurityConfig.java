@@ -18,6 +18,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) {
         http
                 .authorizeRequests(authorizeRequests -> authorizeRequests
+//                        .requestMatchers("/article/delete/**")
+//                            .hasRole("MEMBER", "ROLE_ADMIN")
                         .requestMatchers("/**")
                         .permitAll()
                 )

@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,6 +21,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ArticleService {
     private final ArticleRepository articleRepository;
 
@@ -45,6 +47,7 @@ public class ArticleService {
         return articleRepository.findByAuthorUsername(username, pageable);
     }
 
+    @Transactional
     public RsData<Article> write(
             String title,
             String body,
@@ -85,5 +88,17 @@ public class ArticleService {
 
     public Optional<Article> findById(long id) {
         return articleRepository.findById(id);
+    }
+
+    public boolean canDelete(Member actor, Article article) {
+        if (actor == null) return false;
+        if (actor.isAdmin()) return true;
+
+        return article.getAuthor().equals(actor);
+    }
+
+    @Transactional
+    public void delete(Article article) {
+        articleRepository.delete(article);
     }
 }
