@@ -41,7 +41,7 @@ public class ArticleService {
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
 
-        return articleRepository.findByAuthorUsernameLike(username, pageable);
+        return articleRepository.findByAuthorUsernameContaining(username, pageable);
     }
 
     public Page<Article> getMyList(

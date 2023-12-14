@@ -24,14 +24,15 @@ public class ArticleController {
 
     @GetMapping("/list")
     public String showList(Model model,
-                           @RequestParam(value = "username", defaultValue = "") String username,
+                           @RequestParam(value = "kwUsername", defaultValue = "") String kwUsername,
                            @RequestParam(value = "page", defaultValue = "0") int page) {
         Page<Article> paging = null;
-        if (username != "")
-            paging = articleService.searchListByUsername(username, page);
-        if (username == "")
+        if (kwUsername.equals(""))
             paging = articleService.getList(page);
+        if (!kwUsername.equals(""))
+            paging = articleService.searchListByUsername(kwUsername, page);
         model.addAttribute("paging", paging);
+        model.addAttribute("kwUsername", kwUsername);
         return "article/article/list";
     }
 
