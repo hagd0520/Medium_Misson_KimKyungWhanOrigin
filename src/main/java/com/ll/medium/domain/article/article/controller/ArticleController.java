@@ -96,6 +96,6 @@ public class ArticleController {
 
         articleService.modify(article, modifyForm.getTitle(), modifyForm.getBody());
 
-        return rq.redirect("/article/detale/%d".formatted(id), "게시물이 수정되었습니다.");
+        return rq.redirect("/article/detail/%d".formatted(id), "게시물이 수정되었습니다.");
     }
 }
