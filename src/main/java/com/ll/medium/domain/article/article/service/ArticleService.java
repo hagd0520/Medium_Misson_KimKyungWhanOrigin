@@ -43,7 +43,6 @@ public class ArticleService {
 
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        // TODO 쿼리 최적화 등 고민해보기
         return articleRepository.findByAuthorUsername(username, pageable);
     }
 
@@ -100,5 +99,18 @@ public class ArticleService {
     @Transactional
     public void delete(Article article) {
         articleRepository.delete(article);
+    }
+
+    @Transactional
+    public boolean canModify(Member actor, Article article) {
+        if (actor == null) return false;
+
+        return article.getAuthor().equals(actor);
+    }
+
+    @Transactional
+    public void modify(Article article, String title, String body) {
+        article.setTitle(title);
+        article.setBody(body);
     }
 }

@@ -1,6 +1,7 @@
 package com.ll.medium.domain.article.article.controller;
 
 import com.ll.medium.domain.article.article.entity.Article;
+import com.ll.medium.domain.article.article.entity.ArticleModifyForm;
 import com.ll.medium.domain.article.article.entity.ArticleWriteForm;
 import com.ll.medium.domain.article.article.service.ArticleService;
 import com.ll.medium.global.rq.Rq;
@@ -74,4 +75,27 @@ public class ArticleController {
         return rq.redirect("/", "%d번 게시물이 삭제되었습니다.".formatted(id));
     }
 
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/modify/{id}")
+    public String showModify(Model model, @PathVariable long id) {
+        Article article = articleService.findById(id).get();
+
+        if (!articleService.canModify(rq.getMember(), article)) throw new RuntimeException("수정 권한이 없습니다.");
+
+        model.addAttribute("article", article);
+
+        return "article/article/modify";
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/modify/{id}")
+    public String modify(@PathVariable long id, @Valid ArticleModifyForm modifyForm) {
+        Article article = articleService.findById(id).get();
+
+        if (!articleService.canModify(rq.getMember(), article)) throw new RuntimeException("수정 권한이 없습니다.");
+
+        articleService.modify(article, modifyForm.getTitle(), modifyForm.getBody());
+
+        return rq.redirect("/article/detale/%d".formatted(id), "게시물이 수정되었습니다.");
+    }
 }

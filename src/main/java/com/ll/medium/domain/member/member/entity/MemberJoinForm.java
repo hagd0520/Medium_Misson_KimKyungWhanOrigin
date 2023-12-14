@@ -7,11 +7,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MemberJoinForm {
-    // TODO 자바스크립트의 경고메세지와 통일
-    @NotEmpty(message = "사용자ID는 필수항목입니다.")
+    @NotEmpty(message = "아이디를 입력해주세요.")
     private String username;
-    @NotEmpty(message = "비밀번호는 필수항목입니다.")
+    @NotEmpty(message = "비밀번호를 입력해주세요.")
     private String password;
-    @NotEmpty(message = "비밀번호 확인은 필수항목입니다.")
+    @NotEmpty(message = "비밀번호 확인을 입력해주세요.")
     private String passwordConfirm;
 }
