@@ -12,7 +12,9 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     Page<Article> findByAuthorUsername(String username, Pageable pageable);
 
-    Page<Article> findByAuthorUsernameContaining(String username, Pageable pageable);
+    Page<Article> findByAuthorUsernameContainingAndIsPublishedTrue(String username, Pageable pageable);
 
     Optional<Article> findByAuthorUsername(String username);
+
+    Page<Article> findByIsPublishedTrue(Pageable pageable);
 }

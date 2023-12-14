@@ -38,7 +38,8 @@ public class ArticleController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/myList")
-    public String showMyList(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
+    public String showMyList(Model model,
+                             @RequestParam(value = "page", defaultValue = "0") int page) {
         Page<Article> paging = articleService.getMyList(page);
         model.addAttribute("paging", paging);
         return "article/article/myList";
@@ -53,6 +54,8 @@ public class ArticleController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/write")
     public String write(@Valid ArticleWriteForm writeForm, BindingResult bindingResult) {
+
+
         RsData<Article> writeRs = articleService.write(
                 writeForm.getTitle(),
                 writeForm.getBody(),

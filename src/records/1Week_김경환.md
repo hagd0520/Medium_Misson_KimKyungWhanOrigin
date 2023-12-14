@@ -69,6 +69,8 @@ AppConfig.siteBaseUrl = siteBaseUrl;
 - Bootstrap을 기반으로 만들어진 paging 코드를 Daisyui에 적용하려고 했지만 형식이 달라 헤매었다
   - button 을 사용할 경우 안의 실제 인터페이스에선 button이 아닌 button 안의 텍스트를 눌렀을 때만 작동하였다.
     - 공식에 나와있는 button 이 아닌 a 을 사용함으로써 해결
+- isPublished 필드값을 html의 체크박스를 통해 전달 받는 과정에서 오류가 있었다.
+  - html에서 해당 인풋 엘리멘털의 name 값을 published로 수정함으로써 해결
 
 ---
 **[수정사항]**

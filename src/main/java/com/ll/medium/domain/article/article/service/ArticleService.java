@@ -31,7 +31,7 @@ public class ArticleService {
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
-        return articleRepository.findAll(pageable);
+        return articleRepository.findByIsPublishedTrue(pageable);
     }
 
     public Page<Article> searchListByUsername(String username,
@@ -41,7 +41,7 @@ public class ArticleService {
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
 
-        return articleRepository.findByAuthorUsernameContaining(username, pageable);
+        return articleRepository.findByAuthorUsernameContainingAndIsPublishedTrue(username, pageable);
     }
 
     public Page<Article> getMyList(

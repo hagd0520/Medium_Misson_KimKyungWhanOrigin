@@ -26,10 +26,17 @@
             <textarea name="body" rows="5" maxlength="10000" placeholder="내용을 입력해주세요."
                       class="textarea textarea-bordered"></textarea>
         </div>
-
-        <button class="btn btn-accent btn-block" type="submit">
-            작성
-        </button>
+        <div>
+            <button class="btn btn-accent btn-block" type="submit">
+                작성
+            </button>
+            <div class="form-control">
+                <label class="cursor-pointer label">
+                    <span class="label-text">공개 / 비공개</span>
+                    <input type="checkbox" name="published" checked="checked" class="checkbox checkbox-success" />
+                </label>
+            </div>
+        </div>
     </form>
 
     <script>

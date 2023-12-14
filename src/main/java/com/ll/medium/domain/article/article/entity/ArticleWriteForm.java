@@ -18,5 +18,5 @@ public class ArticleWriteForm {
 
     private Member member;
 
-    private boolean isPublished;
+    private boolean published;
 }
