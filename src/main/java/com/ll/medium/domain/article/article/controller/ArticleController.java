@@ -23,8 +23,14 @@ public class ArticleController {
     private final Rq rq;
 
     @GetMapping("/list")
-    public String showList(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
-        Page<Article> paging = articleService.getList(page);
+    public String showList(Model model,
+                           @RequestParam(value = "username", defaultValue = "") String username,
+                           @RequestParam(value = "page", defaultValue = "0") int page) {
+        Page<Article> paging = null;
+        if (username != "")
+            paging = articleService.searchListByUsername(username, page);
+        if (username == "")
+            paging = articleService.getList(page);
         model.addAttribute("paging", paging);
         return "article/article/list";
     }

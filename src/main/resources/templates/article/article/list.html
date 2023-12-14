@@ -13,10 +13,35 @@
         <th:block th:replace="global/articleTable :: articleTable(${paging})"></th:block>
     </th:block>
 
+    <form onsubmit="submitSearchForm(this); return false;">
+        <input type="search" name="kw" placeholder="회원 이름으로 검색" th:value="${param.kw}">
+        <input type="submit" value="검색">
+    </form>
+
     <th:block th:with="paging = ${paging}">
         <th:block th:replace="global/pagination :: pagination(${paging})"></th:block>
     </th:block>
 
 </div>
+
+<script>
+    function submitSearchForm(form) {
+        const kwTypeCheckboxes = form.querySelectorAll("input[name='kwType']");
+
+        const isChecked = Array.from(kwTypeCheckboxes).some(checkbox => checkbox.checked);
+
+        if (!isChecked) {
+            alert("최소한 하나의 검색 유형을 선택해야 합니다.");
+
+            if (kwTypeCheckboxes.length > 0) {
+                kwTypeCheckboxes[0].focus();
+            }
+
+            return;
+        }
+
+        form.submit();
+    }
+</script>
 
 </html>

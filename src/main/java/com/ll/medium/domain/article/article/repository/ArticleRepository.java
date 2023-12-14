@@ -11,4 +11,8 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     Optional<Article> findFirstByOrderByIdDesc();
 
     Page<Article> findByAuthorUsername(String username, Pageable pageable);
+
+    Page<Article> findByAuthorUsernameLike(String username, Pageable pageable);
+
+    Optional<Article> findByAuthorUsername(String username);
 }

@@ -34,6 +34,16 @@ public class ArticleService {
         return articleRepository.findAll(pageable);
     }
 
+    public Page<Article> searchListByUsername(String username,
+                                           @RequestParam int page
+    ) {
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createDate"));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
+
+        return articleRepository.findByAuthorUsernameLike(username, pageable);
+    }
+
     public Page<Article> getMyList(
             @RequestParam(defaultValue = "1") int page
     ) {
@@ -112,5 +122,9 @@ public class ArticleService {
     public void modify(Article article, String title, String body) {
         article.setTitle(title);
         article.setBody(body);
+    }
+
+    public Optional<Article> findByUsername(String username) {
+        return articleRepository.findByAuthorUsername(username);
     }
 }
