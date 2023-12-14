@@ -122,9 +122,10 @@ public class ArticleService {
     }
 
     @Transactional
-    public void modify(Article article, String title, String body) {
+    public void modify(Article article, String title, String body, boolean isPublished) {
         article.setTitle(title);
         article.setBody(body);
+        article.setPublished(isPublished);
     }
 
     public Optional<Article> findByUsername(String username) {

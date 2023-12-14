@@ -102,7 +102,7 @@ public class ArticleController {
 
         if (!articleService.canModify(rq.getMember(), article)) throw new RuntimeException("수정 권한이 없습니다.");
 
-        articleService.modify(article, modifyForm.getTitle(), modifyForm.getBody());
+        articleService.modify(article, modifyForm.getTitle(), modifyForm.getBody(), modifyForm.isPublished());
 
         return rq.redirect("/article/detail/%d".formatted(id), "게시물이 수정되었습니다.");
     }
