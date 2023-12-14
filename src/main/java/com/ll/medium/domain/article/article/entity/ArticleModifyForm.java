@@ -14,4 +14,6 @@ public class ArticleModifyForm {
 
     @NotEmpty(message = "내용을 입력해주세요.")
     private String body;
+
+    private boolean isPublished;
 }

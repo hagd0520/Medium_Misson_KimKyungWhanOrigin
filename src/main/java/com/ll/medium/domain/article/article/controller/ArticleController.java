@@ -57,6 +57,7 @@ public class ArticleController {
                 writeForm.getTitle(),
                 writeForm.getBody(),
                 rq.getMember(),
+                writeForm.isPublished(),
                 bindingResult
         );
         return rq.redirectOrBack("/", writeRs);

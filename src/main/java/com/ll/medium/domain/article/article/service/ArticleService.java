@@ -60,12 +60,14 @@ public class ArticleService {
     public RsData<Article> write(
             String title,
             String body,
-            Member author
+            Member author,
+            boolean isPublished
     ) {
         Article article = Article.builder()
                 .author(author)
                 .title(title)
                 .body(body)
+                .isPublished(isPublished)
                 .build();
 
         articleRepository.save(article);
@@ -79,6 +81,7 @@ public class ArticleService {
             String title,
             String body,
             Member author,
+            boolean isPublished,
             BindingResult bindingResult
     ) {
         if (bindingResult.hasErrors()) {
@@ -88,7 +91,7 @@ public class ArticleService {
                     null
             );
         }
-        return write(title, body, author);
+        return write(title, body, author, isPublished);
     }
 
     public Optional<Article> findLatest() {

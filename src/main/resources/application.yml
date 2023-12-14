@@ -2,6 +2,10 @@ spring:
   profiles:
     active: dev
     include: secret
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
   servlet:
     multipart:
       max-file-size: 50MB

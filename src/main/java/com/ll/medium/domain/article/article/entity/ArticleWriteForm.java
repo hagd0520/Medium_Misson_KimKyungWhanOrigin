@@ -17,4 +17,6 @@ public class ArticleWriteForm {
     private String body;
 
     private Member member;
+
+    private boolean isPublished;
 }
